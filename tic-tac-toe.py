@@ -12,6 +12,30 @@ def init_board():
 def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
     row, col = 0, 0
+    coordinate = input("Please give a coordinate: ").upper()
+    while True:
+
+        if (coordinate[0].isalpha()
+        and coordinate[1:].isnumeric()
+        and ord(coordinate[0]) - 65 >= 0
+        and int(coordinate[1:]) > 0
+        and int(coordinate[1:]) < 4):
+
+            row = ord(coordinate[0]) - 65
+            col = int(coordinate[1:])
+            if board[row][col] == ".":
+                break
+            else:
+                print("The coordinate is already taken.")
+                coordinate = input("Please give a coordinate: ").upper()
+
+        else:
+        
+            print("Incorect coordinate.")
+            coordinate = input("Please give a coordinate: ").upper()
+
+        
+
     return row, col
 
 
@@ -52,6 +76,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
     # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
     print_board(board)
     row, col = get_move(board, 1)
+    print(row,col)
     mark(board, 1, row, col)
 
     winner = 0
