@@ -96,7 +96,10 @@ def has_won(board, player):
 
 def is_full(board):
     """Returns True if board is full."""
-    return False
+    for i in board:
+        if i.count(".") > 0:
+            return False
+    return True
 
 
 def print_board(board):
