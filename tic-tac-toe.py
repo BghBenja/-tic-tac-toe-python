@@ -48,14 +48,49 @@ def get_ai_move(board, player):
 
 def mark(board, player, row, col):
     """Marks the element at row & col on the board for player."""
-    if player == 0:
-        board[row][col] = "X"
-    else:
-        board[row][col] = "0"
+    board[row][col] = player
 
 
 def has_won(board, player):
     """Returns True if player has won the game."""
+    win = None
+
+    n = len(board)
+
+    for i in range(n):
+        win = True
+        for j in range(n):
+            if board[i][j] != player:
+                win = False
+                break
+        if win:
+            return win
+
+    for i in range(n):
+        win = True
+        for j in range(n):
+            if board[j][i] != player:
+                win = False
+                break
+        if win:
+            return win
+
+    win = True
+    for i in range(n):
+        if board[i][i] != player:
+            win = False
+            break
+    
+    if win:
+        return win
+
+    win = True
+    for i in range(n):
+        if board[i][n-1-i] != player:
+            win = False
+            break
+    if win:
+        return win
     return False
 
 
