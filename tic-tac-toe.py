@@ -18,11 +18,12 @@ def get_move(board, player):
         if (coordinate[0].isalpha()
         and coordinate[1:].isnumeric()
         and ord(coordinate[0]) - 65 >= 0
+        and ord(coordinate[0]) - 65 < 3
         and int(coordinate[1:]) > 0
         and int(coordinate[1:]) < 4):
 
             row = ord(coordinate[0]) - 65
-            col = int(coordinate[1:])
+            col = int(coordinate[1:]) - 1
             if board[row][col] == ".":
                 break
             else:
@@ -47,7 +48,10 @@ def get_ai_move(board, player):
 
 def mark(board, player, row, col):
     """Marks the element at row & col on the board for player."""
-    pass
+    if player == 0:
+        board[row][col] = "X"
+    else:
+        board[row][col] = "0"
 
 
 def has_won(board, player):
@@ -78,6 +82,7 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
     row, col = get_move(board, 1)
     print(row,col)
     mark(board, 1, row, col)
+    print(board)
 
     winner = 0
     print_result(winner)
