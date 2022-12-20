@@ -1,3 +1,5 @@
+import string
+
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
     board = []
@@ -104,6 +106,15 @@ def is_full(board):
 
 def print_board(board):
     """Prints a 3-by-3 board on the screen with borders."""
+    n = len(board)
+    alphabet = string.ascii_uppercase
+
+    line_breake = f'\n  {"+".join(["---"]*n)}\n'
+    result = []
+    for row in range(n):
+        result.append(f'{alphabet[row]}  {" | ".join(board[row])}')
+    print("   1   2   3")
+    print(line_breake.join(result))
     pass
 
 
