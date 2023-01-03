@@ -100,8 +100,8 @@ def is_full(board):
     """Returns True if board is full."""
     for i in board:
         if i.count(".") > 0:
-            return False
-    return True
+            return True
+    return False
 
 
 def print_board(board):
@@ -128,15 +128,25 @@ def print_result(winner):
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
-
-    # use get_move(), mark(), has_won(), is_full(), and print_board() to create game logic
-    print_board(board)
-    row, col = get_move(board, 1)
-    print(row,col)
-    mark(board, 1, row, col)
-    print(board)
-
+    player = "X"
     winner = 0
+    print_board(board)
+
+    while(is_full(board)):
+        row, col = get_move(board, player)
+        mark(board, player, row, col)
+        print_board(board)
+
+        if has_won(board, player):
+            winner = player
+            break
+
+        if player == "X":
+            player = "O"
+        else:
+            player = "X"
+    
+
     print_result(winner)
 
 
