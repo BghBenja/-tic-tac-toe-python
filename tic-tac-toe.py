@@ -1,4 +1,5 @@
 import string
+import random
 
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
@@ -37,14 +38,16 @@ def get_move(board, player):
             print("Incorect coordinate.")
             coordinate = input("Please give a coordinate: ").upper()
 
-        
-
     return row, col
 
 
 def get_ai_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
-    row, col = 0, 0
+    while(True):
+        row, col = random.randrange(0,3), random.randrange(0,3)
+        if board[row][col] == ".":
+                break 
+    print(row,col)
     return row, col
 
 
@@ -128,6 +131,9 @@ def print_result(winner):
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
+
+    get_ai_move(board, "x")
+
     player = "X"
     winner = 0
     print_board(board)
