@@ -131,15 +131,18 @@ def print_result(winner):
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
     board = init_board()
-
-    get_ai_move(board, "x")
-
     player = "X"
     winner = 0
+    game_modes = mode.split("-")
+    game_mode = game_modes[0]
+
     print_board(board)
 
     while(is_full(board)):
-        row, col = get_move(board, player)
+        if game_mode == "HUMAN":
+            row, col = get_move(board, player)
+        else:
+            row, col = get_ai_move(board, player)
         mark(board, player, row, col)
         print_board(board)
 
@@ -149,8 +152,10 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
 
         if player == "X":
             player = "O"
+            game_mode = game_modes[1]
         else:
             player = "X"
+            game_mode = game_modes[0]
     
 
     print_result(winner)
