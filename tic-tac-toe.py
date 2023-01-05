@@ -160,9 +160,23 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
 
     print_result(winner)
 
+def print_menu():
+    print("TicTacToa\n\nGame modes:\n\n1: Human vs Human\n2: Human vs Ai")
 
 def main_menu():
-    tictactoe_game('HUMAN-HUMAN')
+    print_menu()
+    game_mode = 0
+    while(True):
+        game_mode = input("\nChoos game mode: ")
+        if game_mode.isnumeric() and int(game_mode) > 0 and int(game_mode) < 3:
+            break
+        else:
+            print_menu()
+    
+    if game_mode == 1:
+        tictactoe_game('HUMAN-HUMAN')
+    else:
+        tictactoe_game('HUMAN-AI')
 
 
 if __name__ == '__main__':
