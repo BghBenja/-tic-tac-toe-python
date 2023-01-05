@@ -1,5 +1,6 @@
 import string
 import random
+from os import system, name
 
 def init_board():
     """Returns an empty 3-by-3 board (with .)."""
@@ -15,7 +16,7 @@ def init_board():
 def get_move(board, player):
     """Returns the coordinates of a valid move for player on board."""
     row, col = 0, 0
-    coordinate = input("Please give a coordinate: ").upper()
+    coordinate = input("\nPlease give a coordinate: ").upper()
     while True:
 
         if (coordinate[0].isalpha()
@@ -109,6 +110,7 @@ def is_full(board):
 
 def print_board(board):
     """Prints a 3-by-3 board on the screen with borders."""
+    clen()
     n = len(board)
     alphabet = string.ascii_uppercase
 
@@ -124,9 +126,9 @@ def print_board(board):
 def print_result(winner):
     """Congratulates winner or proclaims tie (if winner equals zero)."""
     if winner == 0:
-        print("Tie!")
+        print("\nTie!")
     else:
-        print(f'Winner is {winner} player!')
+        print(f'\nWinner is {winner} player!')
 
 
 def tictactoe_game(mode='HUMAN-HUMAN'):
@@ -160,7 +162,15 @@ def tictactoe_game(mode='HUMAN-HUMAN'):
 
     print_result(winner)
 
+def clen():
+
+    if name == 'nt':
+        system('cls')
+    else:
+        system('clear')
+
 def print_menu():
+    clen()
     print("TicTacToa\n\nGame modes:\n\n1: Human vs Human\n2: Human vs Ai")
 
 def main_menu():
